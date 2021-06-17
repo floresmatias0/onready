@@ -1,0 +1,9 @@
+### GET LIST
+GET http://localhost:3001/movies
+
+
+### GET DETAIL MOVIE PARAMS
+
+GET http://localhost:3001/movies/detail/title/simpsons
+
+###
