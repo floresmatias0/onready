@@ -5,6 +5,7 @@ const user = require('./user/user');
 const createUser = require('./user/post.user');
 
 const getMovies = require('./movies/get.movies');
+const postMovies = require('./movies/post.movies');
 
 const router = Router();
 
@@ -14,6 +15,7 @@ router.use('/users', createUser);
 
 
 router.use('/movies', getMovies);
+router.use('/movies', postMovies);
 
 
 module.exports = router;

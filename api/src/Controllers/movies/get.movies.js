@@ -1,16 +1,30 @@
-  
-const axios = require('axios')
+const axios = require('axios');
+const {Anime} = require('../../db');
 
 module.exports = {
-    getListMovies: async () =>{
-
+    getAnimesApi: async () =>{
         return await axios.get(`
-        https://www.omdbapi.com/?apikey=${process.env.API_KEY}&s=marvel
+        https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=0
         `)
-        .then(movies =>{
-            return movies.data
-        }).then((payload) => {
-            return payload
+        .then(async(animes) =>{
+            let arr = animes.data.data;
+            for(let i = 0; i < arr.length; i++){
+                console.log(arr[i].attributes.titles.en)
+                await Anime.findOrCreate({
+                    where:{
+                        name: arr[i].attributes.titles.en || arr[i].attributes.titles.en_jp
+                    },
+                    defaults:{
+                        origin: arr[i].attributes.startDate,
+                        finish: arr[i].attributes.endDate,
+                        status: arr[i].attributes.status,
+                        image: arr[i].attributes.posterImage,
+                        coverImage: arr[i].attributes.coverImage,
+                        totalEpisodes: arr[i].attributes.totalLength,
+                        idYoutube: arr[i].attributes.youtubeVideoId,
+                    }
+                })
+            }
         })
     },
     getMovieDetails: async (name) =>{
@@ -19,13 +33,6 @@ module.exports = {
         https://www.omdbapi.com/?apikey=${process.env.API_KEY}&t=${name}
         `)
         .then(details =>{
-            //LAS PELICULAS DEBEN CONTENER
-            // Nombre.
-            // País de origen.
-            // Fecha de estreno.
-            // Director.
-            // Link de imagen de portada.
-            // Reparto: Es una lista de actores donde cada uno consta de nombre y apellido.
             let data = details.data
             
             let objDetail = {

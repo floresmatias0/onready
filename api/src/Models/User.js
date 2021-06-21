@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
     sequelize.define('user', {
         email: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         name: {
             type: DataTypes.STRING,
@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         password_virtual: {
             type: DataTypes.STRING,
