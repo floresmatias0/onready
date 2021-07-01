@@ -4,8 +4,8 @@ const { Router } = require('express');
 const user = require('./user/user');
 const createUser = require('./user/post.user');
 
-const getMovies = require('./movies/get.movies');
-const postMovies = require('./movies/post.movies');
+const getAnimes = require('./animes/get.animes');
+const postAnimes = require('./animes/post.animes');
 
 const router = Router();
 
@@ -14,8 +14,8 @@ router.use('/users', user);
 router.use('/users', createUser);
 
 
-router.use('/movies', getMovies);
-router.use('/movies', postMovies);
+router.use('/animes', getAnimes);
+router.use('/animes', postAnimes);
 
 
 module.exports = router;

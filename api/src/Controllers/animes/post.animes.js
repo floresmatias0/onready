@@ -1,10 +1,10 @@
-const axios = require('axios');
-const {Anime} = require('../../db');
+const { Anime } = require('../../db')
+const axios = require('axios')
 
 module.exports = {
-    getAnimesApi: async () =>{
+    apiToDb: async () => {
         return await axios.get(`
-        https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=0
+        https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=400
         `)
         .then(async(animes) =>{
             let arr = animes.data.data;
@@ -26,26 +26,5 @@ module.exports = {
                 })
             }
         })
-    },
-    getMovieDetails: async (name) =>{
-
-        return await axios.get(`
-        https://www.omdbapi.com/?apikey=${process.env.API_KEY}&t=${name}
-        `)
-        .then(details =>{
-            let data = details.data
-            
-            let objDetail = {
-                name: data.Title,
-                origin: data.Country,
-                premiere: data.Released,
-                director: data.Director,
-                image: data.Poster,
-                actors: data.Actors
-            }
-
-            return objDetail
-        })
-    },
-
+    }
 }

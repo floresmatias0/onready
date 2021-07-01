@@ -1,0 +1,18 @@
+.container{
+    width: 100%;
+}
+.contentCards{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card{
+    width: 200px;
+    line-height: 5px;
+    text-align: center;
+    border: 2px solid darkcyan;
+    border-radius: 10px;
+}

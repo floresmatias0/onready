@@ -1,23 +1,14 @@
 ### GET LIST
-POST http://localhost:3001/movies
-Content-Type: application/json
+GET http://localhost:3001/animes
 
-{
-    "title": "batman"
-}
 
 ### GET DETAIL MOVIE PARAMS
 
-GET http://localhost:3001/movies/detail/title/simpsons
+GET http://localhost:3001/animes/search/100
 
 ### POST MOVIE IN DB
 
-POST http://localhost:3001/movies/create
-Content-Type: application/json
-
-{
-    "title": "simpsons"
-}
+POST http://localhost:3001/animes/create
 
 ### POST USER IN DB
 
