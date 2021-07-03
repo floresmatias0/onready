@@ -9,6 +9,11 @@ GET http://localhost:3001/animes/search/100
 ### POST MOVIE IN DB
 
 POST http://localhost:3001/animes/create
+Content-Type: application/json
+
+{
+    "offset": 20
+}
 
 ### POST USER IN DB
 

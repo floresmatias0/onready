@@ -2,11 +2,11 @@ const { Anime } = require('../../db')
 const axios = require('axios')
 
 module.exports = {
-    apiToDb: async () => {
-        return await axios.get(`
-        https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=400
+    apiToDb: async (offset) => {
+        await axios.get(`
+        https://kitsu.io/api/edge/anime?page[limit]=20&page[offset]=${offset}
         `)
-        .then(async(animes) =>{
+        .then(async(animes) => {
             let arr = animes.data.data;
             for(let i = 0; i < arr.length; i++){
                 console.log(arr[i].attributes.titles.en)
@@ -16,6 +16,7 @@ module.exports = {
                     },
                     defaults:{
                         origin: arr[i].attributes.startDate,
+                        description: arr[i].attributes.synopsis,
                         finish: arr[i].attributes.endDate,
                         status: arr[i].attributes.status,
                         image: arr[i].attributes.posterImage,
@@ -26,5 +27,7 @@ module.exports = {
                 })
             }
         })
+
+        return await Anime.findAll();
     }
 }

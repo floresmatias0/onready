@@ -6,8 +6,8 @@ let initialState = {
     loadingAnimes: true,
     errorAnimes: "",
 }
-let URL = "http://localhost:3001/animes"
-let GET_ANIMES_REQUEST = "GET_ANIMES_REQUEST ";
+
+let GET_ANIMES_REQUEST = "GET_ANIMES_REQUEST";
 let GET_ANIMES_SUCCESS = "GET_ANIMES_SUCCESS";
 let GET_ANIMES_FAILURE = "GET_ANIMES_FAILURE";
 
@@ -37,12 +37,23 @@ const reducer = (state = initialState, action) => {
   }
 }
 //actionsCreator
-export const getAnimes = () => {
+export const getAnimes = (num) => {
     return async (dispatch,getState) => {
       dispatch({
         type:GET_ANIMES_REQUEST
       })
-      await axios.get(URL)
+
+      let options = {
+        method: 'POST',
+        url: 'http://localhost:3001/animes/create',
+        header:{
+            ContentType: 'application/json',   
+        },
+        data:{
+            offset: num
+            }
+    }
+      await axios.request(options)
       .then(res => {
           console.log(res.data)
         dispatch({
@@ -58,6 +69,7 @@ export const getAnimes = () => {
         })
       })
     }
+
 }
 
 
