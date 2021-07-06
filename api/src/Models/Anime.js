@@ -39,6 +39,10 @@ module.exports = (sequelize) => {
         idYoutube: {
             type: DataTypes.STRING,
             allowNull: true,
+        },
+        genres: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: true,  
         }
     });
 };

@@ -1,20 +1,27 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {connect} from 'react-redux';
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
+import Paginate from '../components/navbar/paginate';
+import Catalog from '../components/navbar/catalog';
 
 const Home = ({ANIME}) => {
-    console.log(ANIME.animes)
 
-    const popUp = (URL) => {
-        window.open(URL, 'Nombre de la ventana', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width=640,height=400,left = 50,top = 50');
-    }
+    //PAGINATION
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postPerPage] = useState(20)
+
+    const indexOfLastPage = currentPage * postPerPage;
+    const indexOfFirstPage = indexOfLastPage - postPerPage;
+    const currentPost = ANIME.animes.slice(indexOfFirstPage,indexOfLastPage)
+
+    const pagination = (number) => setCurrentPage(number)
 
     return (
         <div className={styles.container}>
             <h1>hola soy un home</h1>
             {ANIME && ANIME.loadingAnimes ? (
                 <div className={styles.contentCards}>
-                    {ANIME.animes.map((point,i) => {
+                    {/* {ANIME.animes.map((point,i) => {
                         return(
                             <div key={i} className={styles.card}>
                                 <p>{point.name.slice(0,23)}</p>
@@ -32,7 +39,13 @@ const Home = ({ANIME}) => {
                                 </span>
                             </div>
                         )
-                    })}
+                    })} */}
+                    <Paginate 
+                        anime={ANIME.animes.length} 
+                        postPerPage={postPerPage} 
+                        pagination={pagination}/>
+
+                    <Catalog anime={currentPost} />
                 </div>
             ) : (
                 <p>loading...</p>

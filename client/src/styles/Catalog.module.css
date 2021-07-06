@@ -1,0 +1,13 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.card{
+    margin: 0.5em;
+}
+.trailer{
+    cursor: pointer;
+    text-align: center;
+}
