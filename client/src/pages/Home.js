@@ -4,6 +4,11 @@ import styles from '../styles/Home.module.css'
 
 const Home = ({ANIME}) => {
     console.log(ANIME.animes)
+
+    const popUp = (URL) => {
+        window.open(URL, 'Nombre de la ventana', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width=640,height=400,left = 50,top = 50');
+    }
+
     return (
         <div className={styles.container}>
             <h1>hola soy un home</h1>
@@ -18,8 +23,8 @@ const Home = ({ANIME}) => {
                                 <p>Episodes: {point.totalEpisodes}</p>
                                 <span>
                                  {point.idYoutube && point.idYoutube !== null ? (
-                                    <p>
-                                        <a href={`https://www.youtube.com/watch?v=${point.idYoutube}`}>Trailer</a>
+                                    <p className={styles.trailer} onClick={() => popUp(`https://www.youtube.com/watch?v=${point.idYoutube}`)}>
+                                        Trailer
                                     </p>
                                  ):(
                                     <p>No trailer</p>

@@ -16,3 +16,6 @@
     border: 2px solid darkcyan;
     border-radius: 10px;
 }
+.trailer{
+    cursor: pointer;
+}

@@ -16,14 +16,14 @@ const generateStore = () =>{
       composeEnhancers(applyMiddleware(thunk))
   )
 
-  const createAnime = setInterval(()=>{
+//   const createAnime = setInterval(()=>{
+//   getAnimes(num)(store.dispatch,store.getState);
+//   num+=20
+//   if(num > 1800 && num <= 2000){
+//     clearInterval(createAnime)
+//   }
+//  },500)
   getAnimes(num)(store.dispatch,store.getState);
-  num+=20
-  if(num > 500 && num <= 1000){
-    clearInterval(createAnime)
-  }
- },500)
-
   return store
 }   
 
