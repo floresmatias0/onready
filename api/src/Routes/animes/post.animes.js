@@ -5,7 +5,7 @@ server.post('/create', async(req, res, next) => {
     let {offset} = req.body;
     return await apiToDb(offset)
     .then((results) => {
-        console.log("se crearon nuevos animes",results)
+        console.log("se crearon nuevos animes")
         res.status(202).json(results);
     }) 
     .catch(error => {

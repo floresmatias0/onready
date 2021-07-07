@@ -1,14 +1,16 @@
 const { Anime } = require('../../db');
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = {
-    getAnimeDetails: async (animeId) =>{
-
-        return await Anime.findOne({
-            where:{
-                id: animeId
+    getAnimeByName: async (animeName) => {
+        return await Anime.findAll({
+          where: {
+            name: {
+              [Op.iLike]: '%' + animeName + '%'
             }
-        })
-        .then(details => details)
-    },
+          }
+        });
+      }
 
 }

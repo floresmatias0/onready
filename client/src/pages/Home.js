@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 import {connect} from 'react-redux';
 import styles from '../styles/Home.module.css';
-import Paginate from '../components/navbar/paginate';
-import Catalog from '../components/navbar/catalog';
+import Paginate from '../components/paginate/paginate';
+import Catalog from '../components/catalog/catalog';
 
 const Home = ({ANIME}) => {
 

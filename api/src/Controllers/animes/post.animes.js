@@ -9,7 +9,6 @@ module.exports = {
         .then(async(animes) => {
             let arr = animes.data.data;
             for(let i = 0; i < arr.length; i++){
-                console.log(arr[i].attributes.titles.en)
                 await Anime.findOrCreate({
                     where:{
                         name: arr[i].attributes.titles.en || arr[i].attributes.titles.en_jp
